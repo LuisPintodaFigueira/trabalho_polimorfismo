@@ -19,5 +19,12 @@ class ConjuntoEmprestimosPoli {
   }
 }
 
+class EmprestimoComDesconto extends Emprestimo {
+
+  getPercentualDesconto(): number {
+    
+  }
+}
+
 // Executa o programa
 ConjuntoEmprestimosPoli.main();
