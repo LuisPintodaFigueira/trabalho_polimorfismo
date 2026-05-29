@@ -21,12 +21,15 @@ export class ConjuntoEmprestimos {
 
   public proximasParcelas(): boolean {
     let status = false;
-    for (let e = 0; e < this.vEmprestimos.length; e++) {
+
+    for (let e = 0; e <= this.corrente; e++) {
+      if (this.vEmprestimos[e] === undefined) continue;
+      
       const p = this.vEmprestimos[e].proximaParcela();
       if (p > 0) {
         status = true;
         const tipo = this.vEmprestimos[e] instanceof EmprestimoTA ? 'EmprestimoTA' : 'Emprestimo';
-        console.log(`${tipo} ${e + 1}: ${p}`);
+        console.log(`${tipo} ${e + 1}: ${p.toFixed(2)}`);
       }
     }
     return status;

@@ -2,52 +2,24 @@ import { Emprestimo } from './Emprestimo';
 
 export class EmprestimoVeiculo extends Emprestimo {
   private tipo: string;
-  private jurosAjustado: number;
-  private saldoAtual: number;
-  private parcelaAtual: number;
-  private totalParcelas: number;
+  private taxaAdministrativa: boolean;
 
-  constructor(
-    saldo: number,
-    parcelas: number,
-    juros: number,
-    tipo: string
-  ) {
-    super(saldo, parcelas, juros);
+  constructor(saldo: number, parcelas: number, juros: number, tipo: string) {
+    const jurosAjustado = tipo === 'usado' ? juros + 1 : juros;
 
+    super(saldo, parcelas, jurosAjustado);
+    
     this.tipo = tipo;
-
-    this.jurosAjustado =
-      tipo === 'usado'
-        ? juros + 1
-        : juros;
-
-    this.saldoAtual = saldo;
-    this.parcelaAtual = 1;
-    this.totalParcelas = parcelas;
-  }
-
-  public getTipo(): string {
-    return this.tipo;
+    this.taxaAdministrativa = parcelas > 60;
   }
 
   public proximaParcela(): number {
-    if (this.parcelaAtual > this.totalParcelas) {
-      return 0;
-    }
-
-    let parcela = this.saldoAtual;
-
-    this.saldoAtual = this.saldoAtual + (
-      this.saldoAtual * (this.jurosAjustado / 100)
-    );
-
-    if (this.totalParcelas > 60) {
+    let parcela = super.proximaParcela();
+    
+    if (parcela > 0 && this.taxaAdministrativa) {
       parcela = parcela + (parcela * 0.02);
     }
-
-    this.parcelaAtual++;
-
+    
     return parcela;
   }
 }
