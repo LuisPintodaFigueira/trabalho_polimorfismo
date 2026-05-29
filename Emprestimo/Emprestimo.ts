@@ -1,21 +1,23 @@
 export class Emprestimo {
-  private n: number;
-  private j: number;
-  private corrente: number;
-  private p: number;
+  protected saldo: number;
+  protected parcelas: number;
+  protected corrente: number;
+  protected juros: number;
+  protected p: number;
 
-  constructor(s: number, n: number, j: number) {
-    this.n = n;
-    this.j = j;
+  constructor(saldo: number, parcelas: number, juros: number) {
+    this.saldo = saldo;
+    this.parcelas = parcelas;
+    this.juros = juros;
     this.corrente = 1;
-    this.p = s;
+    this.p = saldo;
   }
 
   public proximaParcela(): number {
     let retorno = this.p;
     this.corrente++;
-    if (this.corrente <= this.n) {
-      this.p = this.p + (this.p * (this.j / 100));
+    if (this.corrente <= this.parcelas) {
+      this.p = this.p + (this.p * (this.juros / 100));
     } else {
       this.p = 0;
     }

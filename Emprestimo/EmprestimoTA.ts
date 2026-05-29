@@ -3,8 +3,8 @@ import { Emprestimo } from './Emprestimo';
 export class EmprestimoTA extends Emprestimo {
   private ta: number;
 
-  constructor(s: number, n: number, j: number, ta: number) {
-    super(s, n, j);
+  constructor(saldo: number, parcelas: number, juros: number, ta: number) {
+    super(saldo, parcelas, juros);
     this.ta = ta;
   }
 
