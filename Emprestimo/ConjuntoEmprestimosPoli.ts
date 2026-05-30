@@ -21,3 +21,4 @@ class ConjuntoEmprestimosPoli {
 
 // Executa o programa
 ConjuntoEmprestimosPoli.main();
+ConjuntoEmprestimosPoli.main();

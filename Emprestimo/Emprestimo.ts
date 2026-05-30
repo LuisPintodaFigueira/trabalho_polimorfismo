@@ -29,18 +29,20 @@ export class Emprestimo {
 
   public setP(valor: number): void {
   this.p = valor;
-}
+  }
 
-public setJ(valor: number): void {
+  public setJ(valor: number): void {
   this.j = valor;
-}
+  }
 
-public setCorrente(valor: number): void {
+  public setCorrente(valor: number): void {
   this.corrente = valor;
-}
+  }
 
   public proximaParcela(): number {
+
     let retorno = this.p;
+
     this.corrente++;
 
     if (this.corrente <= this.n) {
@@ -50,5 +52,5 @@ public setCorrente(valor: number): void {
     }
 
     return retorno;
-  }
+  }  
 }
