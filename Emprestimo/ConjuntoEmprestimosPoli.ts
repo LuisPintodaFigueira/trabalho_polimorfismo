@@ -10,7 +10,7 @@ import { EmprestimoVeiculo } from './EmprestimoVeiculo';
 
 class ConjuntoEmprestimosPoli {
   public static main(): void {
-    const ce = new ConjuntoEmprestimos(2);
+    const ce = new ConjuntoEmprestimos(8);
 
     ce.adicionaEmprestimo(new Emprestimo(200, 3, 1));
     ce.adicionaEmprestimo(new EmprestimoTA(500, 4, 2, 15));
