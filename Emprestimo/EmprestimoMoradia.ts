@@ -21,18 +21,25 @@ export class EmprestimoMoradia extends Emprestimo {
 
     public override proximaParcela(): number {
 
+        // Se já pagou todas as parcelas, retorna 0 (encerra)
+        if (this.getCorrente() > this.getN()) {
+            return 0;
+        }
+
         let jurosAjustado = this.getJ();
 
         if (this.getN() > 120) {
             jurosAjustado = this.getJ() * 0.85;
         }
 
-        let retorno = this.getP();
+        // Calcula o valor da parcela atual
+        let valorParcela = this.getP();
 
         if (this.temSeguroMoradia) {
-            retorno += 10;
+            valorParcela += 10;
         }
 
+        // Prepara a PRÓXIMA parcela (se houver)
         this.setCorrente(this.getCorrente() + 1);
 
         if (this.getCorrente() <= this.getN()) {
@@ -43,6 +50,7 @@ export class EmprestimoMoradia extends Emprestimo {
             this.setP(0);
         }
 
-        return retorno;
+        // Retorna o valor da parcela ATUAL
+        return valorParcela;
     }
 }
